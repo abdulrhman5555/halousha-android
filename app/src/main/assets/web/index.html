@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>التطبيق</title>
+
+<!-- PWA -->
+<meta name="theme-color" content="#14151a" />
+<link rel="manifest" href="manifest.json" />
+<link rel="icon" href="assets/icons/icon-192.png" />
+<link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
+
+<link rel="stylesheet" href="assets/css/shell.css" />
+</head>
+<body>
+
+<div id="app-root">
+
+  <!-- ===== الهيدر ===== -->
+  <header class="app-header" id="appHeader">
+    <button class="app-header__back" id="backBtn" aria-label="رجوع للرئيسية">‹ الرئيسية</button>
+    <span class="app-header__title app-header__home-title">تطبيقي</span>
+    <span class="app-header__title" id="sectionTitle" style="display:none"></span>
+    <span class="app-header__status" id="statusDot" title="الحالة"></span>
+  </header>
+
+  <!-- شريط تحميل خفيف عند تبديل الأقسام -->
+  <div class="load-bar" id="loadBar"></div>
+
+  <!-- ===== الشبكة الرئيسية: تُبنى ديناميكياً من sections-loader.js ===== -->
+  <main class="home-grid" id="homeGrid">
+    <!-- البطاقات تُحقن هنا تلقائياً: من الكاش المحلي أولاً (فوري)، ثم من Firestore لحظياً عند توفر النت -->
+  </main>
+
+  <!-- ===== منطقة عرض القسم المختار ===== -->
+  <div class="section-view" id="sectionView">
+    <iframe id="sectionFrame" title="محتوى القسم"></iframe>
+  </div>
+
+</div>
+
+<!-- تنبيه بسيط عند المزامنة / التحديث -->
+<div class="sync-toast" id="syncToast"></div>
+
+<!-- Firebase (يُستخدم فقط لو متوفر نت — التطبيق يعمل أوفلاين بالكامل بدونه عبر الكاش المحلي) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+<script src="assets/js/firebase-config.js"></script>
+<script src="assets/js/sections-loader.js"></script>
+<script src="assets/js/shell.js"></script>
+<script src="assets/js/update-checker.js"></script>
+</body>
+</html>

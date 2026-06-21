@@ -1,0 +1,17 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // قراءة فقط لقائمة الأقسام (يستخدمها sections-loader.js بالتطبيق)
+    match /sections/{sectionId} {
+      allow read: if true;
+      allow write: if false; // الكتابة فقط من Firebase Console (لا تتأثر بهذي القاعدة)
+    }
+
+    // باقي المجموعات (updates, notifications) لا تحتاج قراءة من العميل أصلاً
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

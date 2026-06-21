@@ -1,0 +1,208 @@
+/* ============================================
+   Shell Styles — الواجهة الرئيسية (الهب)
+   لا تستخدم هذا الملف داخل أي قسم — خاص بالهيكل العام فقط
+   ============================================ */
+
+:root {
+  --bg: #14151a;
+  --bg-elevated: #1c1e26;
+  --bg-card: #20222c;
+  --text: #edeef2;
+  --text-dim: #9499a8;
+  --border: #2c2f3a;
+  --radius: 16px;
+
+  /* لون مميز لكل قسم — يعطي هوية بصرية بدون ما يكسر الهدوء العام */
+  --c-music: #b18cff;
+  --c-drawing: #ff9f5a;
+  --c-ai: #4fd1ff;
+  --c-stories: #ffd166;
+  --c-cooking: #ff6b6b;
+  --c-photos: #ff7fb0;
+  --c-games: #6ee7a8;
+  --c-admin: #8a93a8;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', Tahoma, 'Noto Sans Arabic', sans-serif;
+  direction: rtl;
+  overflow: hidden; /* المنطقة المتحركة هي #app-view فقط */
+}
+
+#app-root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* ===== الهيدر ===== */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.app-header__back {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 15px;
+  padding: 6px 10px;
+  border-radius: 10px;
+}
+.app-header__back:active { background: var(--bg-card); }
+
+.app-header.is-section .app-header__back { display: flex; }
+.app-header.is-section .app-header__home-title { display: none; }
+
+.app-header__title {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.app-header__status {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4ade80; /* أخضر = محدث / متصل */
+  box-shadow: 0 0 0 3px rgba(74,222,128,0.15);
+  transition: background .3s;
+}
+.app-header__status.is-offline { background: #6b7280; box-shadow: none; }
+.app-header__status.is-syncing { background: #fbbf24; box-shadow: 0 0 0 3px rgba(251,191,36,0.18); }
+
+/* ===== شريط تقدم التحميل عند تبديل الأقسام ===== */
+.load-bar {
+  position: fixed;
+  top: 0; right: 0; left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent, #4fd1ff), transparent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform .25s ease;
+  z-index: 50;
+}
+.load-bar.is-active { transform: scaleX(1); }
+
+/* ===== الشبكة الرئيسية (الهوم) ===== */
+.home-grid {
+  flex: 1;
+  overflow-y: auto;
+  padding: 18px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  align-content: start;
+}
+
+@media (min-width: 480px) {
+  .home-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.section-card {
+  --accent: #4fd1ff;
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 14px;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 104px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform .12s ease, border-color .12s ease;
+}
+.section-card:active { transform: scale(0.96); }
+.section-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.section-card::before {
+  content: "";
+  position: absolute;
+  top: 0; right: 0;
+  width: 38px; height: 38px;
+  background: var(--accent);
+  opacity: .14;
+  border-radius: 0 var(--radius) 0 30px;
+}
+
+.section-card__icon {
+  font-size: 24px;
+  width: 38px; height: 38px;
+  display: flex; align-items: center; justify-content: center;
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+  border-radius: 11px;
+}
+
+.section-card__label {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.section-card__hint {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+/* ألوان كل قسم */
+.section-card[data-section="music"]    { --accent: var(--c-music); }
+.section-card[data-section="drawing"]  { --accent: var(--c-drawing); }
+.section-card[data-section="ai"]       { --accent: var(--c-ai); }
+.section-card[data-section="stories"]  { --accent: var(--c-stories); }
+.section-card[data-section="cooking"]  { --accent: var(--c-cooking); }
+.section-card[data-section="photos"]   { --accent: var(--c-photos); }
+.section-card[data-section="games"]    { --accent: var(--c-games); }
+.section-card[data-section="admin"]    { --accent: var(--c-admin); grid-column: 1 / -1; }
+
+/* ===== منطقة عرض القسم (iframe) ===== */
+.section-view {
+  flex: 1;
+  position: relative;
+  display: none;
+}
+.section-view.is-active { display: block; }
+
+.section-view iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: var(--bg);
+}
+
+/* تذييل صغير يوضح حالة المزامنة */
+.sync-toast {
+  position: fixed;
+  bottom: 14px;
+  right: 50%;
+  transform: translateX(50%) translateY(20px);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 13px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  opacity: 0;
+  transition: opacity .25s, transform .25s;
+  pointer-events: none;
+  z-index: 60;
+}
+.sync-toast.is-visible {
+  opacity: 1;
+  transform: translateX(50%) translateY(0);
+}

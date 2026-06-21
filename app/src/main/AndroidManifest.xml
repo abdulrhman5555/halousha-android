@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <application
+        android:allowBackup="true"
+        android:label="Halousha"
+        android:icon="@mipmap/ic_launcher_default"
+        android:roundIcon="@mipmap/ic_launcher_default"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="false"
+        android:supportsRtl="true">
+
+        <!-- ===== الشاشة الرئيسية (WebView) ===== -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="Halousha">
+        </activity>
+
+        <!-- خدمة استقبال إشعارات FCM (الصامتة + المستقبلية المرئية) -->
+        <service
+            android:name=".HalushaMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <!-- قناة الإشعارات الافتراضية (للإشعارات المرئية المستقبلية) -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="halousha_default_channel" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@mipmap/ic_launcher_default" />
+
+        <!--
+          ===== 10 خانات Activity-Alias لتبديل الأيقونة =====
+          المبدأ: في كل لحظة، فقط alias واحد يكون enabled والباقي disabled.
+          IconSwitcher.kt يتحكم بتفعيل/تعطيل هذي الـ alias عبر PackageManager.
+          alias_00 هو الافتراضي (enabled من البداية)، الباقي (01-09) معطّلة لحد ما تضيف أيقوناتها.
+        -->
+
+        <activity-alias
+            android:name=".IconAlias00"
+            android:targetActivity=".MainActivity"
+            android:icon="@mipmap/ic_launcher_default"
+            android:roundIcon="@mipmap/ic_launcher_default"
+            android:enabled="true"
+            android:exported="true"
+            android:label="Halousha">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name=".IconAlias01"
+            android:targetActivity=".MainActivity"
+            android:icon="@mipmap/ic_launcher_01"
+            android:roundIcon="@mipmap/ic_launcher_01"
+            android:enabled="false"
+            android:exported="true"
+            android:label="Halousha">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name=".IconAlias02"
+            android:targetActivity=".MainActivity"
+            android:icon="@mipmap/ic_launcher_02"
+            android:roundIcon="@mipmap/ic_launcher_02"
+            android:enabled="false"
+            android:exported="true"
+            android:label="Halousha">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name=".IconAlias03"
+            android:targetActivity=".MainActivity"
+            android:icon="@mipmap/ic_launcher_03"
+            android:roundIcon="@mipmap/ic_launcher_03"
+            android:enabled="false"
+            android:exported="true"
+            android:label="Halousha">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name=".IconAlias04"
+            android:targetActivity=".MainActivity"
+            android:icon="@mipmap/ic_launcher_04"
+            android:roundIcon="@mipmap/ic_launcher_04"
+            android:enabled="false"
+            android:exported="true"
+            android:label="Halousha">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name=".IconAlias05"
+            android:targetActivity=".MainActivity"
+            android:icon="@mipmap/ic_launcher_05"
+            android:roundIcon="@mipmap/ic_launcher_05"
+            android:enabled="false"
+            android:exported="true"
+            android:label="Halousha">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name=".IconAlias06"
+            android:targetActivity=".MainActivity"
+            android:icon="@mipmap/ic_launcher_06"
+            android:roundIcon="@mipmap/ic_launcher_06"
+            android:enabled="false"
+            android:exported="true"
+            android:label="Halousha">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name=".IconAlias07"
+            android:targetActivity=".MainActivity"
+            android:icon="@mipmap/ic_launcher_07"
+            android:roundIcon="@mipmap/ic_launcher_07"
+            android:enabled="false"
+            android:exported="true"
+            android:label="Halousha">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name=".IconAlias08"
+            android:targetActivity=".MainActivity"
+            android:icon="@mipmap/ic_launcher_08"
+            android:roundIcon="@mipmap/ic_launcher_08"
+            android:enabled="false"
+            android:exported="true"
+            android:label="Halousha">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name=".IconAlias09"
+            android:targetActivity=".MainActivity"
+            android:icon="@mipmap/ic_launcher_09"
+            android:roundIcon="@mipmap/ic_launcher_09"
+            android:enabled="false"
+            android:exported="true"
+            android:label="Halousha">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+    </application>
+</manifest>
