@@ -67,7 +67,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun subscribeToUpdatesTopic() {
-        FirebaseMessaging.getInstance().subscribeToTopic("all_devices")
+        try {
+            FirebaseMessaging.getInstance().subscribeToTopic("all_devices")
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     override fun onBackPressed() {
