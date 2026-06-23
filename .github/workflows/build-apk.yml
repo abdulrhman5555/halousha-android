@@ -19,14 +19,13 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: تثبيت Gradle
-        uses: gradle/actions/setup-gradle@v3
-
-      - name: إنشاء google-services.json
-        run: echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > app/google-services.json
+      - name: إنشاء Gradle Wrapper
+        run: |
+          gradle wrapper --gradle-version=8.9
+          chmod +x gradlew
 
       - name: بناء APK
-        run: gradle assembleDebug
+        run: ./gradlew assembleDebug --no-daemon
 
       - name: رفع APK
         uses: actions/upload-artifact@v4

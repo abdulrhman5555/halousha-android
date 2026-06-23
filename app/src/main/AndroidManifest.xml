@@ -16,15 +16,17 @@
         android:usesCleartextTraffic="true"
         android:supportsRtl="true">
 
-        <!-- ===== الشاشة الرئيسية (WebView) ===== -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="Halousha">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
-        <!-- خدمة استقبال إشعارات FCM (الصامتة + المستقبلية المرئية) -->
         <service
             android:name=".HalushaMessagingService"
             android:exported="false">
@@ -33,20 +35,12 @@
             </intent-filter>
         </service>
 
-        <!-- قناة الإشعارات الافتراضية (للإشعارات المرئية المستقبلية) -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="halousha_default_channel" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@mipmap/ic_launcher_default" />
-
-        <!--
-          ===== 10 خانات Activity-Alias لتبديل الأيقونة =====
-          المبدأ: في كل لحظة، فقط alias واحد يكون enabled والباقي disabled.
-          IconSwitcher.kt يتحكم بتفعيل/تعطيل هذي الـ alias عبر PackageManager.
-          alias_00 هو الافتراضي (enabled من البداية)، الباقي (01-09) معطّلة لحد ما تضيف أيقوناتها.
-        -->
 
         <activity-alias
             android:name=".IconAlias00"
@@ -56,10 +50,6 @@
             android:enabled="true"
             android:exported="true"
             android:label="Halousha">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity-alias>
 
         <activity-alias
@@ -70,10 +60,6 @@
             android:enabled="false"
             android:exported="true"
             android:label="Halousha">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity-alias>
 
         <activity-alias
@@ -84,10 +70,6 @@
             android:enabled="false"
             android:exported="true"
             android:label="Halousha">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity-alias>
 
         <activity-alias
@@ -98,10 +80,6 @@
             android:enabled="false"
             android:exported="true"
             android:label="Halousha">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity-alias>
 
         <activity-alias
@@ -112,10 +90,6 @@
             android:enabled="false"
             android:exported="true"
             android:label="Halousha">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity-alias>
 
         <activity-alias
@@ -126,10 +100,6 @@
             android:enabled="false"
             android:exported="true"
             android:label="Halousha">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity-alias>
 
         <activity-alias
@@ -140,10 +110,6 @@
             android:enabled="false"
             android:exported="true"
             android:label="Halousha">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity-alias>
 
         <activity-alias
@@ -154,10 +120,6 @@
             android:enabled="false"
             android:exported="true"
             android:label="Halousha">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity-alias>
 
         <activity-alias
@@ -168,10 +130,6 @@
             android:enabled="false"
             android:exported="true"
             android:label="Halousha">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity-alias>
 
         <activity-alias
@@ -182,10 +140,6 @@
             android:enabled="false"
             android:exported="true"
             android:label="Halousha">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity-alias>
 
     </application>
