@@ -19,10 +19,8 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: إنشاء Gradle Wrapper
-        run: |
-          gradle wrapper --gradle-version=8.9
-          chmod +x gradlew
+      - name: منح صلاحيات gradlew
+        run: chmod +x gradlew
 
       - name: بناء APK
         run: ./gradlew assembleDebug --no-daemon
@@ -32,3 +30,7 @@ jobs:
         with:
           name: Halousha-debug-apk
           path: app/build/outputs/apk/debug/app-debug.apk
+EO
+git add .
+git commit -m "fix: remove gradle wrapper regeneration"
+git push
