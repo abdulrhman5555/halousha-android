@@ -1,0 +1,14 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Rounded Background card to look like a modern adaptive icon -->
+    <path
+        android:fillColor="#0EA5E9"
+        android:pathData="M16,8 Q54,8 92,8 Q100,8 100,16 Q100,54 100,92 Q100,100 92,100 Q54,100 16,100 Q8,100 8,92 Q8,54 8,16 Q8,8 16,8 Z" />
+    <!-- White center star -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,26 L62.3,42.9 L81,45.6 L67.5,58.8 L70.7,77.4 L54,68.6 L37.3,77.4 L40.5,58.8 L27,45.6 L45.7,42.9 Z" />
+</vector>

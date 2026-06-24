@@ -1,146 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <application
         android:allowBackup="true"
-        android:label="Halousha"
-        android:icon="@mipmap/ic_launcher_default"
-        android:roundIcon="@mipmap/ic_launcher_default"
-        android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true"
-        android:supportsRtl="true">
-
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyApplication">
+        
+        <!-- Main Activity that holds our WebView container -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-            android:label="Halousha">
+            android:theme="@style/Theme.MyApplication" />
+
+        <!-- Default launcher activity alias -->
+        <activity-alias
+            android:name=".MainActivityAliasDefault"
+            android:enabled="true"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:label="@string/app_name"
+            android:targetActivity=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+        </activity-alias>
 
-        <service
-            android:name=".HalushaMessagingService"
-            android:exported="false">
+        <!-- Teal theme launcher activity alias -->
+        <activity-alias
+            android:name=".MainActivityAliasTeal"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@drawable/ic_launcher_teal"
+            android:roundIcon="@drawable/ic_launcher_teal"
+            android:label="@string/app_name"
+            android:targetActivity=".MainActivity">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </service>
-
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_channel_id"
-            android:value="halousha_default_channel" />
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@mipmap/ic_launcher_default" />
-
-        <activity-alias
-            android:name=".IconAlias00"
-            android:targetActivity=".MainActivity"
-            android:icon="@mipmap/ic_launcher_default"
-            android:roundIcon="@mipmap/ic_launcher_default"
-            android:enabled="true"
-            android:exported="true"
-            android:label="Halousha">
         </activity-alias>
 
+        <!-- Purple theme launcher activity alias -->
         <activity-alias
-            android:name=".IconAlias01"
-            android:targetActivity=".MainActivity"
-            android:icon="@mipmap/ic_launcher_01"
-            android:roundIcon="@mipmap/ic_launcher_01"
+            android:name=".MainActivityAliasPurple"
             android:enabled="false"
             android:exported="true"
-            android:label="Halousha">
+            android:icon="@drawable/ic_launcher_purple"
+            android:roundIcon="@drawable/ic_launcher_purple"
+            android:label="@string/app_name"
+            android:targetActivity=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity-alias>
 
+        <!-- Gold theme launcher activity alias -->
         <activity-alias
-            android:name=".IconAlias02"
-            android:targetActivity=".MainActivity"
-            android:icon="@mipmap/ic_launcher_02"
-            android:roundIcon="@mipmap/ic_launcher_02"
+            android:name=".MainActivityAliasGold"
             android:enabled="false"
             android:exported="true"
-            android:label="Halousha">
-        </activity-alias>
-
-        <activity-alias
-            android:name=".IconAlias03"
-            android:targetActivity=".MainActivity"
-            android:icon="@mipmap/ic_launcher_03"
-            android:roundIcon="@mipmap/ic_launcher_03"
-            android:enabled="false"
-            android:exported="true"
-            android:label="Halousha">
-        </activity-alias>
-
-        <activity-alias
-            android:name=".IconAlias04"
-            android:targetActivity=".MainActivity"
-            android:icon="@mipmap/ic_launcher_04"
-            android:roundIcon="@mipmap/ic_launcher_04"
-            android:enabled="false"
-            android:exported="true"
-            android:label="Halousha">
-        </activity-alias>
-
-        <activity-alias
-            android:name=".IconAlias05"
-            android:targetActivity=".MainActivity"
-            android:icon="@mipmap/ic_launcher_05"
-            android:roundIcon="@mipmap/ic_launcher_05"
-            android:enabled="false"
-            android:exported="true"
-            android:label="Halousha">
-        </activity-alias>
-
-        <activity-alias
-            android:name=".IconAlias06"
-            android:targetActivity=".MainActivity"
-            android:icon="@mipmap/ic_launcher_06"
-            android:roundIcon="@mipmap/ic_launcher_06"
-            android:enabled="false"
-            android:exported="true"
-            android:label="Halousha">
-        </activity-alias>
-
-        <activity-alias
-            android:name=".IconAlias07"
-            android:targetActivity=".MainActivity"
-            android:icon="@mipmap/ic_launcher_07"
-            android:roundIcon="@mipmap/ic_launcher_07"
-            android:enabled="false"
-            android:exported="true"
-            android:label="Halousha">
-        </activity-alias>
-
-        <activity-alias
-            android:name=".IconAlias08"
-            android:targetActivity=".MainActivity"
-            android:icon="@mipmap/ic_launcher_08"
-            android:roundIcon="@mipmap/ic_launcher_08"
-            android:enabled="false"
-            android:exported="true"
-            android:label="Halousha">
-        </activity-alias>
-
-        <activity-alias
-            android:name=".IconAlias09"
-            android:targetActivity=".MainActivity"
-            android:icon="@mipmap/ic_launcher_09"
-            android:roundIcon="@mipmap/ic_launcher_09"
-            android:enabled="false"
-            android:exported="true"
-            android:label="Halousha">
+            android:icon="@drawable/ic_launcher_gold"
+            android:roundIcon="@drawable/ic_launcher_gold"
+            android:label="@string/app_name"
+            android:targetActivity=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity-alias>
 
     </application>
+
 </manifest>

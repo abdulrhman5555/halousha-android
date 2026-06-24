@@ -1,0 +1,6 @@
+{
+  "name": "Halousha",
+  "description": "تطبيق حلوشة الشامل والذكي الذي يعمل بالكامل أوفلاين، مع دعم مشغل الأغاني، الرسم، الروايات، الألعاب، وتبديل الأيقونة الفوري.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,33 +1,21 @@
-# Halousha — مشروع تطبيق الأندرويد
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
+</div>
 
-## 📌 الحالة الحالية
-✅ **الطبقة الأولى:** القشرة الأساسية (WebView + تبديل الأيقونة + بناء تلقائي) — جاهزة.
-✅ **الطبقة الثانية:** Firebase مفعّل بالكامل (Firestore + Storage + Cloud Functions + إشعارات FCM صامتة ومرئية) — جاهزة.
+# Run and deploy your AI Studio app
 
-راجع `FIREBASE-UPDATES-GUIDE.md` لمعرفة كيف تنشر أول تحديث وكيف تربط GitHub بصلاحية نشر الفنكشن.
+This contains everything you need to run your app locally.
 
-## 🚀 كيف ترفعه على GitHub وتبني أول APK (من جوالك، بدون كمبيوتر)
+View your app in AI Studio: https://ai.studio/apps/9c67786e-5ec8-4dcd-b90b-0b4328fc7b33
 
-1. افتح تطبيق GitHub أو متصفح الجوال وسجّل دخول لحسابك.
-2. أنشئ مستودع (Repository) جديد فاضي، اسمه مثلاً `halousha-android`.
-   - **مهم:** لا تضيف README أو .gitignore تلقائي من GitHub (عشان ما يصير تعارض).
-3. ارفع كل محتوى هذا المجلد (كل الملفات والمجلدات بداخله) للمستودع:
-   - من تطبيق GitHub: فيه خيار "Add file" / رفع مجلد.
-   - أو من المتصفح: تسحب وتفلت الملفات بصفحة المستودع.
-4. بعد الرفع، روح لتبويب **Actions** بالمستودع — البناء يبدأ تلقائياً (بسبب `build-apk.yml`).
-5. انتظر (أول مرة قد تاخذ 3-5 دقائق)، ثم افتح الـ workflow اللي خلص ✅، وبالأسفل تلقى **Artifacts** → حمّل `Halousha-debug-apk`.
-6. فك الضغط، تلقى ملف `app-debug.apk` — هذا هو التطبيق، تقدر تنزّله مباشرة بجوال أخوك (لازم تفعيل "تثبيت من مصادر غير معروفة" مرة واحدة بإعدادات أندرويد).
+## Run Locally
 
-## ⚠️ اللي ناقص حالياً وتحتاج تعرفه
+**Prerequisites:**  [Android Studio](https://developer.android.com/studio)
 
-- **الأيقونة الافتراضية مؤقتة** (دائرة ذهبية بسيطة بحرف H) — فقط لضمان نجاح البناء. لما تجهز تصاميمك الـ 10، نبدّلها بسهولة (راجع `ICONS-GUIDE.md`).
-- **firebase-config.js فاضي** — يعني تبديل الأقسام التلقائي اللحظي والتحديثات لسه غير مفعّلة. الـ hub حالياً يعرض القائمة الافتراضية المخزّنة بالكود (`FALLBACK_SECTIONS` بملف `sections-loader.js`).
-- **التوقيع debug فقط** — كافي للتركيب المباشر على جهاز أخوك، لكن لو حبيت تنشره بمتجر رسمي لاحقاً نحتاج keystore حقيقي (خطوة منفصلة).
 
-## 📂 أين أعدّل كل شي لاحقاً؟
-| أبي أعدّل | الملف |
-|---|---|
-| محتوى أي قسم (الطبخ، الصور...) | `app/src/main/assets/web/sections/<اسم القسم>/index.html` |
-| القائمة الافتراضية للأقسام (احتياطية فقط) | `app/src/main/assets/web/assets/js/sections-loader.js` |
-| إعدادات Firebase (لما تجهز) | `app/src/main/assets/web/assets/js/firebase-config.js` |
-| اسم التطبيق / الباكيت | `app/build.gradle` + `AndroidManifest.xml` |
+1. Open Android Studio
+2. Select **Open** and choose the directory containing this project
+3. Allow Android Studio to fix any incompatibilities as it imports the project.
+4. Create a file named `.env` in the project directory and set `GEMINI_API_KEY` in that file to your Gemini API key (see `.env.example` for an example)
+5. Remove this line from the app's `build.gradle.kts` file: `signingConfig = signingConfigs.getByName("debugConfig")`
+6. Run the app on an emulator or physical device
